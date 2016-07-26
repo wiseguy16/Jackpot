@@ -7,8 +7,16 @@
 //
 
 #import "TicketNumbersTableViewController.h"
+#import "Ticket.h"
+#import "WinningTicketViewController.h"
 
 @interface TicketNumbersTableViewController ()
+
+//@property (strong, nonatomic) Ticket *nTicket;
+
+@property (strong, nonatomic) NSMutableArray *lotteryTicketsGeneratedArray;
+
+- (IBAction)addTicketTapped:(UIBarButtonItem *)sender;
 
 @end
 
@@ -18,11 +26,9 @@
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.lotteryTicketsGeneratedArray = [[NSMutableArray alloc] init];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -30,6 +36,25 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Action Handlers
+
+- (IBAction)addTicketTapped:(UIBarButtonItem *)sender
+{
+ //   [self generateLotteryTicketNumbers];*****************MAKE THIS WORK!!!!
+   
+        Ticket *aTicket = [[Ticket alloc] init];
+    
+    
+    // returns value to be displayed, so update the displayLabel
+    
+        [self.lotteryTicketsGeneratedArray addObject:aTicket];
+    
+    [self.tableView reloadData];
+    
+}
+
+
 
 #pragma mark - Table view data source
 
@@ -42,7 +67,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
-    return 1;
+    return self.lotteryTicketsGeneratedArray.count;
 }
 
 
@@ -51,6 +76,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TicketCell" forIndexPath:indexPath];
     
     // Configure the cell...
+    Ticket *aTicket = self.lotteryTicketsGeneratedArray[indexPath.row]; // ****************MAKE THIS WORK!!!!
+    cell.textLabel.text = aTicket.ticketAs6Digits;  // ****************MAKE THIS WORK!!!!
     
     return cell;
 }
