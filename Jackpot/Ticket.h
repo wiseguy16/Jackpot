@@ -19,8 +19,11 @@
 @property (assign) NSNumber *digit5;
 @property (assign) NSNumber *digit6;
 @property (strong, nonatomic) NSString *ticketAs6Digits;
+@property (strong, nonatomic) NSString *prizeMoney;
+@property (assign) NSNumber *numberOfMatchingDigits;
 
--(NSNumber *)randomDigit;
+
 -(NSString*)generateLotteryTicketNumbers;
+-(int)checkForWinningNumbers:(NSArray*)winningNumbersArray;
 
 @end

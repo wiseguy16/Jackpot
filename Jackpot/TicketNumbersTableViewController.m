@@ -52,7 +52,12 @@
     
     [self.tableView reloadData];
     
+    
+   // [aTicket checkForWinningNumbers: //winningDigits
+    
 }
+
+
 
 
 
