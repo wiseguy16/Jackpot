@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TicketNumbersTableViewController.h"
 
 @interface WinningTicketViewController : UIViewController
+
+@property (nonatomic) id<TimeSetDelegate> delegate;
 
 
 @end

@@ -10,7 +10,14 @@
 #import "Ticket.h"
 #import "WinningTicketViewController.h"
 
-@interface TicketNumbersTableViewController ()
+@interface TicketNumbersTableViewController () <TimeSetDelegate>
+
+{
+    NSInteger currentTimerValue; // instance variable
+    NSInteger originalTimerValue;
+    NSTimer *timer;
+}
+
 
 //@property (strong, nonatomic) Ticket *nTicket;
 
@@ -85,6 +92,16 @@
     cell.textLabel.text = aTicket.ticketAs6Digits;  // ****************MAKE THIS WORK!!!!
     
     return cell;
+}
+
+
+#pragma mark - Time Set delegate
+
+- (void)timeValueWasChosen:(NSInteger)timeValue
+{
+    originalTimerValue = timeValue;
+    currentTimerValue = originalTimerValue;
+   // self.timeLabel.text = [NSString stringWithFormat:@"%ld sec", (long)currentTimerValue];
 }
 
 /*
