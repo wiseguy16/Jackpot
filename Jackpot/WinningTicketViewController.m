@@ -40,10 +40,18 @@
 
 - (IBAction)setTapped:(UIButton *)sender
 {
+            NSInteger selectedRow = [self.timePicker selectedRowInComponent:1];
+        [self.delegate timeValueWasChosen:(long*)53 - selectedRow];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    
     // [self dismissViewControllerAnimated:YES completion:nil];
-    NSInteger selectedRow = [self.timePicker selectedRowInComponent:0];
-    [self.delegate timeValueWasChosen:53 - selectedRow];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    // NSNumber *myNum1 = [NSNumber numberWithInt:selectedRow];
+    // NSMutableArray *buildingWinningNumbersArray = [[NSMutableArray alloc] init];
+    // [buildingWinningNumbersArray addObject:myNum1];
+    // NSNumber *myNum = [NSNumber numberWithInteger:myNsIntValue];
+    // NSInteger selectedNewComponent;
+    // NSInteger selectedComponent [[self.timePicker selectRow:selectedRow inComponent:component animated:YES];
+
 }
 
 #pragma mark - Data Source
@@ -55,12 +63,14 @@
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return 53;
+    return 54;
 }
 
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+- (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    return [NSString stringWithFormat:@"%ld", (long)53 -row];
+    
+    return [NSString stringWithFormat:@"%ld", (long)54 -row];
 }
+
 
 @end
