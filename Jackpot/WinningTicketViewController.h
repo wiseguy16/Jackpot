@@ -8,10 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "TicketNumbersTableViewController.h"
+#import "Ticket.h"
+
+
 
 @interface WinningTicketViewController : UIViewController
 
-@property (nonatomic) id<TimeSetDelegate> delegate;
+@property (nonatomic) id<WinningTicketDelegate> delegate;
+
+@property (strong, nonatomic) NSMutableArray *winningNumbersArray2;
+
+@property (strong, nonatomic) Ticket *possibleWinningTicket;
 
 
 @end

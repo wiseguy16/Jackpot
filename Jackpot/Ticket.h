@@ -23,7 +23,11 @@
 @property (assign) NSNumber *numberOfMatchingDigits;
 
 
+@property (strong, nonatomic) NSArray *winningTicketArray;
+
+
 -(NSString*)generateLotteryTicketNumbers;
--(int)checkForWinningNumbers:(NSArray*)winningNumbersArray;
+
+-(int)checkForWinningNumbers:(NSArray*)winningTicketArrayToCheck;
 
 @end

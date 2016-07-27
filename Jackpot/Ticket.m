@@ -7,6 +7,7 @@
 //
 
 #import "Ticket.h"
+#import "WinningTicketViewController.h"
 
 @implementation Ticket
 
@@ -17,8 +18,10 @@
     {
         _ticketDigitsArray = [[NSMutableArray alloc] init];
         _ticketAs6Digits = [[NSString alloc] init];
+        _winningTicketArray = [[NSArray alloc] init];
         
         [self generateLotteryTicketNumbers];
+        //[self checkForWinningNumbers:_winningTicketArray];
      }
     
     return self;
@@ -61,10 +64,10 @@
     
 }
 
--(int)checkForWinningNumbers:(NSArray*)winningNumbersArray
+-(int)checkForWinningNumbers:(NSArray*)winningTicketArrayToCheck
 {
     int winCount = 0;
-    for (NSNumber *winningIndivNumber in winningNumbersArray)
+    for (NSNumber *winningIndivNumber in winningTicketArrayToCheck)
     {
         for (NSNumber *potWinnerNumber in self.ticketDigitsArray) // 
         {

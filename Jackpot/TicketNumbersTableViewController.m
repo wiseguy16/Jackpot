@@ -7,10 +7,10 @@
 //
 
 #import "TicketNumbersTableViewController.h"
-#import "Ticket.h"
+
 #import "WinningTicketViewController.h"
 
-@interface TicketNumbersTableViewController () <TimeSetDelegate>
+@interface TicketNumbersTableViewController () //<TimeSetDelegate>
 
 {
     NSInteger currentTimerValue; // instance variable
@@ -32,9 +32,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+  //  [Ticket checkForWinningNumbers];
     
     self.lotteryTicketsGeneratedArray = [[NSMutableArray alloc] init];
+    
+    
 
 }
 
@@ -50,6 +52,7 @@
 {
     
         Ticket *aTicket = [[Ticket alloc] init];
+ //   [aTicket checkForWinningNumbers:<#(NSArray *)#>
     
     
     // returns value to be displayed, so update the displayLabel
@@ -87,8 +90,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TicketCell" forIndexPath:indexPath];
     
     // Configure the cell...
-    Ticket *aTicket = self.lotteryTicketsGeneratedArray[indexPath.row]; // ****************MAKE THIS WORK!!!!
-    cell.textLabel.text = aTicket.ticketAs6Digits;  // ****************MAKE THIS WORK!!!!
+    Ticket *aTicket = self.lotteryTicketsGeneratedArray[indexPath.row]; // ****************MAKE THIS WORK!!!!*****WORKS NOW!
+    cell.textLabel.text = aTicket.ticketAs6Digits;  // ****************MAKE THIS WORK!!!!*****WORKS NOW!
     
     return cell;
 }
@@ -96,24 +99,26 @@
 
 #pragma mark - Time Set delegate *****************************
 
-- (void)timeValueWasChosen:(NSInteger*)timeValue
+- (void)winningTicketWasChosen:(Ticket *)winTicket
 {
-    originalTimerValue = *timeValue;
-    currentTimerValue = originalTimerValue;
+   // originalTimerValue = *timeValue;
+   // currentTimerValue = originalTimerValue;
    // self.timeLabel.text = [NSString stringWithFormat:@"%ld sec", (long)currentTimerValue];
 }
 
 
 
 
-/*
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"CheckTicketSegue"])
+    {
+        WinningTicketViewController *winTicketVC = [segue destinationViewController];
+        winTicketVC.delegate = self;
+    }
 }
-*/
+
 
 @end

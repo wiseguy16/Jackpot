@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Ticket.h"
 
-@protocol TimeSetDelegate
+@protocol WinningTicketDelegate
 
-- (void)timeValueWasChosen:(NSInteger*)timeValue; // goes in this header cause it will receive data
+- (void)winningTicketWasChosen:(Ticket *)winTicket; // goes in this header cause it will receive data
 
 
 @end
