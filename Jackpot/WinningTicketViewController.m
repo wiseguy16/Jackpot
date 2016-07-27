@@ -79,6 +79,7 @@
     
     
     Ticket *theWinningTicket = [[Ticket alloc] init];
+    
     theWinningTicket.winningTicketArray = self.winningNumbersArray2;
     
     
@@ -91,9 +92,6 @@
     //      NSInteger myI = self.timePicker.description.integerValue;
     NSLog(@"myI is: %@", self.winningNumbersArray2);
 
-    
-    
-    
     
     
     

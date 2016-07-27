@@ -10,12 +10,13 @@
 
 #import "WinningTicketViewController.h"
 
-@interface TicketNumbersTableViewController () //<TimeSetDelegate>
+@interface TicketNumbersTableViewController () <WinningTicketDelegate>
 
 {
     NSInteger currentTimerValue; // instance variable
     NSInteger originalTimerValue;
     NSTimer *timer;
+    Ticket *winningTicket;
 }
 
 
@@ -33,11 +34,18 @@
 {
     [super viewDidLoad];
   //  [Ticket checkForWinningNumbers];
+        self.tempArray = [[NSArray alloc] init];
     
     self.lotteryTicketsGeneratedArray = [[NSMutableArray alloc] init];
     
     
 
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -92,6 +100,16 @@
     // Configure the cell...
     Ticket *aTicket = self.lotteryTicketsGeneratedArray[indexPath.row]; // ****************MAKE THIS WORK!!!!*****WORKS NOW!
     cell.textLabel.text = aTicket.ticketAs6Digits;  // ****************MAKE THIS WORK!!!!*****WORKS NOW!
+    cell.detailTextLabel.text = aTicket.prizeMoney;
+    
+    if (aTicket.winner)
+    {
+        cell.backgroundColor = [UIColor greenColor];
+    }
+    else
+    {
+        cell.backgroundColor = [UIColor clearColor];
+    }
     
     return cell;
 }
@@ -101,9 +119,16 @@
 
 - (void)winningTicketWasChosen:(Ticket *)winTicket
 {
-   // originalTimerValue = *timeValue;
-   // currentTimerValue = originalTimerValue;
-   // self.timeLabel.text = [NSString stringWithFormat:@"%ld sec", (long)currentTimerValue];
+    
+    winningTicket = winTicket;
+    for (Ticket *ticket in self.lotteryTicketsGeneratedArray)
+    {
+        [ticket checkForWinningNumbers:winningTicket.winningTicketArray];
+    }
+    
+    //self.tempArray = winTicket.winningTicketArray;
+    //[winTicket checkForWinningNumbers:winTicket.winningTicketArray];
+    [self.tableView reloadData];
 }
 
 
@@ -119,6 +144,23 @@
         winTicketVC.delegate = self;
     }
 }
+
+
+//- (void)returnThePickedNumbers:(NSArray *)pickedNumbers {
+//    [self checkWinners:pickedNumbers];
+//}
+
+
+
+//- (void)checkWinners:(NSArray *)pickedNumbers {
+//    // Create a winning ticket
+//    Ticket *winningTicket = [Ticket ticketUsingArray:pickedNumbers];
+//    
+//    totalWinnings = 0;
+//    for (Ticket *ourTicket in tickets) {
+//        [ourTicket compareWithTicket:winningTicket];
+//        totalWinnings += ourTicket.payout;
+//    }
 
 
 @end

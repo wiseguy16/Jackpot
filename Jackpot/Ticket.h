@@ -21,6 +21,7 @@
 @property (strong, nonatomic) NSString *ticketAs6Digits;
 @property (strong, nonatomic) NSString *prizeMoney;
 @property (assign) NSNumber *numberOfMatchingDigits;
+@property BOOL winner;
 
 
 @property (strong, nonatomic) NSArray *winningTicketArray;
@@ -28,6 +29,6 @@
 
 -(NSString*)generateLotteryTicketNumbers;
 
--(int)checkForWinningNumbers:(NSArray*)winningTicketArrayToCheck;
+-(void)checkForWinningNumbers:(NSArray*)winningTicketArrayToCheck;
 
 @end

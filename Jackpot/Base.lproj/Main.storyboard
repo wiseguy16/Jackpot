@@ -47,7 +47,7 @@
                     <navigationItem key="navigationItem" id="B0R-pM-MxM">
                         <barButtonItem key="leftBarButtonItem" title="Check Ticket" id="mdO-pW-VqC">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="show" identifier="CheckTicketSegue" id="pbz-ag-jxe"/>
+                                <segue destination="BYZ-38-t0r" kind="presentation" identifier="CheckTicketSegue" id="pbz-ag-jxe"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="fkx-Nz-BOO">

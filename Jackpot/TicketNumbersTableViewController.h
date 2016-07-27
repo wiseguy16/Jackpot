@@ -18,4 +18,6 @@
 
 @interface TicketNumbersTableViewController : UITableViewController
 
+@property (strong, nonatomic) NSArray * tempArray;
+
 @end

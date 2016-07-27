@@ -21,6 +21,8 @@
         _winningTicketArray = [[NSArray alloc] init];
         
         [self generateLotteryTicketNumbers];
+        self.winner = NO;
+        _prizeMoney = @"$0";
         //[self checkForWinningNumbers:_winningTicketArray];
      }
     
@@ -64,7 +66,7 @@
     
 }
 
--(int)checkForWinningNumbers:(NSArray*)winningTicketArrayToCheck
+-(void)checkForWinningNumbers:(NSArray*)winningTicketArrayToCheck
 {
     int winCount = 0;
     for (NSNumber *winningIndivNumber in winningTicketArrayToCheck)
@@ -99,13 +101,29 @@
       self.prizeMoney = @"";
     }
 
+    if (winCount > 2)
+    {
+        self.winner = YES;
+    }
     
-    
-    return winCount;
+    //return winCount;
 }
 
 
-    
+//- (void)compareWithTicket:(Ticket *)anotherTicket {
+//    NSArray *possibleWinningNumbers = anotherTicket.picks;
+//    int matchCount = 0;
+//    
+//    for (NSNumber *ourNumber in picks) {
+//        for (NSNumber *theirNumber in possibleWinningNumbers) {
+//            if (ourNumber.intValue == theirNumber.intValue) {
+//                matchCount += 1;
+//            }
+//        }
+//    }
+//}
+
+
 /*        *****************Use this part of code******************
 //    NSNumber *numberX = [self randomDigit];
     
