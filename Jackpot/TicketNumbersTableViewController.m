@@ -13,14 +13,11 @@
 @interface TicketNumbersTableViewController () <WinningTicketDelegate>
 
 {
-    NSInteger currentTimerValue; // instance variable
-    NSInteger originalTimerValue;
-    NSTimer *timer;
+    // instance variable
     Ticket *winningTicket;
 }
 
 
-//@property (strong, nonatomic) Ticket *nTicket;
 
 @property (strong, nonatomic) NSMutableArray *lotteryTicketsGeneratedArray;
 
@@ -33,19 +30,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-  //  [Ticket checkForWinningNumbers];
-        self.tempArray = [[NSArray alloc] init];
+    
+    self.tempArray = [[NSArray alloc] init];
     
     self.lotteryTicketsGeneratedArray = [[NSMutableArray alloc] init];
-    
-    
 
-}
-
-- (void) viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,31 +43,26 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 #pragma mark - Action Handlers
 
 - (IBAction)addTicketTapped:(UIBarButtonItem *)sender
 {
-    
         Ticket *aTicket = [[Ticket alloc] init];
- //   [aTicket checkForWinningNumbers:<#(NSArray *)#>
     
-    
-    // returns value to be displayed, so update the displayLabel
+    // Adds randomly gererated tickets to the array of Ticket objects
     
         [self.lotteryTicketsGeneratedArray addObject:aTicket];
     
+    // ******Refreshes the tableView after every random ticket is made
+    
     [self.tableView reloadData];
-    
-    
-   // [aTicket checkForWinningNumbers: //winningDigits
     
 }
 
 
 
-
-
-#pragma mark - Table view data source
+#pragma mark - Table view data source ********* Normal stuff for tableViews...
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -92,15 +76,18 @@
     return self.lotteryTicketsGeneratedArray.count;
 }
 
+// **********This configures the cells to be displayed in the tableView
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TicketCell" forIndexPath:indexPath];
     
     // Configure the cell...
-    Ticket *aTicket = self.lotteryTicketsGeneratedArray[indexPath.row]; // ****************MAKE THIS WORK!!!!*****WORKS NOW!
-    cell.textLabel.text = aTicket.ticketAs6Digits;  // ****************MAKE THIS WORK!!!!*****WORKS NOW!
+    Ticket *aTicket = self.lotteryTicketsGeneratedArray[indexPath.row];
+    cell.textLabel.text = aTicket.ticketAs6Digits;
     cell.detailTextLabel.text = aTicket.prizeMoney;
+    
+    // ***********This changes the background color on winning tickets
     
     if (aTicket.winner)
     {
@@ -115,7 +102,9 @@
 }
 
 
-#pragma mark - Time Set delegate *****************************
+#pragma mark - WinningTicketDelegate--  delegate method *****************************
+
+// Gets the winning ticket from WinningTicketViewController and passes it the checkForWinningNumbers method to see how many digits match
 
 - (void)winningTicketWasChosen:(Ticket *)winTicket
 {
@@ -126,8 +115,6 @@
         [ticket checkForWinningNumbers:winningTicket.winningTicketArray];
     }
     
-    //self.tempArray = winTicket.winningTicketArray;
-    //[winTicket checkForWinningNumbers:winTicket.winningTicketArray];
     [self.tableView reloadData];
 }
 
@@ -146,21 +133,7 @@
 }
 
 
-//- (void)returnThePickedNumbers:(NSArray *)pickedNumbers {
-//    [self checkWinners:pickedNumbers];
-//}
 
-
-
-//- (void)checkWinners:(NSArray *)pickedNumbers {
-//    // Create a winning ticket
-//    Ticket *winningTicket = [Ticket ticketUsingArray:pickedNumbers];
-//    
-//    totalWinnings = 0;
-//    for (Ticket *ourTicket in tickets) {
-//        [ourTicket compareWithTicket:winningTicket];
-//        totalWinnings += ourTicket.payout;
-//    }
 
 
 @end

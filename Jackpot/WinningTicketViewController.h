@@ -14,7 +14,7 @@
 
 @interface WinningTicketViewController : UIViewController
 
-@property (strong, nonatomic) id<WinningTicketDelegate> delegate;
+@property (strong, nonatomic) id<WinningTicketDelegate> delegate; // required for using the delegate
 
 @property (strong, nonatomic) NSMutableArray *winningNumbersArray2;
 

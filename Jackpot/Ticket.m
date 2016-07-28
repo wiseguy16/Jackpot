@@ -23,12 +23,12 @@
         [self generateLotteryTicketNumbers];
         self.winner = NO;
         _prizeMoney = @"$0";
-        //[self checkForWinningNumbers:_winningTicketArray];
      }
     
     return self;
 }
 
+#pragma mark - Method for generating a unique 6 digit number.  Fairly complicated to make 6 unique digits without repeating
 
 -(NSString*)generateLotteryTicketNumbers
 {
@@ -66,6 +66,8 @@
     
 }
 
+// ********This method is called in TicketNumbersTableViewController to see if a ticket has any matching digits with the winningTicketArray
+
 -(void)checkForWinningNumbers:(NSArray*)winningTicketArrayToCheck
 {
     int winCount = 0;
@@ -79,6 +81,8 @@
             }
         }
     }
+    
+    // ********* Checking to see how much prizeMoney will be payed out based on how many winning digits
     
     if (winCount == 6)
     {
@@ -100,40 +104,15 @@
     {
       self.prizeMoney = @"";
     }
-
-    if (winCount > 2)
+    
+    // Simple check to see if the ticket is a even a winner at all
+    
+    if (winCount >= 3)
     {
         self.winner = YES;
     }
     
-    //return winCount;
 }
-
-
-//- (void)compareWithTicket:(Ticket *)anotherTicket {
-//    NSArray *possibleWinningNumbers = anotherTicket.picks;
-//    int matchCount = 0;
-//    
-//    for (NSNumber *ourNumber in picks) {
-//        for (NSNumber *theirNumber in possibleWinningNumbers) {
-//            if (ourNumber.intValue == theirNumber.intValue) {
-//                matchCount += 1;
-//            }
-//        }
-//    }
-//}
-
-
-/*        *****************Use this part of code******************
-//    NSNumber *numberX = [self randomDigit];
-    
-//    [self.ticketDigitsArray addObject:numberX];
-//    self.ticketAs6Digits = [NSString stringWithFormat:@"%@", numberX];
-//    return self.ticketAs6Digits;
- */
-    
-    
-
 
 
 @end

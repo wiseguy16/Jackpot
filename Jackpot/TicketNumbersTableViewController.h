@@ -12,6 +12,7 @@
 @protocol WinningTicketDelegate
 
 - (void)winningTicketWasChosen:(Ticket *)winTicket; // goes in this header cause it will receive data
+                                                    // The .m file must implement this function
 
 
 @end
